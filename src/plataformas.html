@@ -16,50 +16,80 @@
 
     
     <nav class="bg-gray-900 shadow-lg py-6 z-10 relative">
-      <script src="https://unpkg.com/flowbite@1.4.0/dist/flowbite.js"></script>
-
-      <header >
-          <div class="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
-
-              <div class="container mx-auto px-4">
-                  <div class="flex items-center justify-between">
-                      <!-- Logo y enlace a la página de inicio -->
-                      <a class="flex items-center text-white text-lg font-semibold" href="index.html">
-                          <img class="h-16 mr-5" src="PNG/log.png" alt="Logo">
-                          PLAY+
-                      </a>
-                      <div class="hidden lg:block">
-                        <!-- Enlaces a otras páginas -->
-                        <a class="ml-4 text-gray-300 hover:text-white" href="../index.html">Inicio</a>
-                        <a class="ml-4 text-gray-300 hover:text-white" href="nosotros.html">Nosotros</a>
-                        <a class="ml-4 text-gray-300 hover:text-white" href="plataformas.html">Juegos</a>
-                        <a class="ml-4 text-gray-300 hover:text-white" href="genero.html">Género</a>
-                        <a class="ml-4 text-gray-300 hover:text-white" href="mercancia.html">Mercancía</a>
-                        
-
-                        <a class="inline-block rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500"
-                      href="login.html">Iniciar sesion</a>
-
-                      </div>
-
-
-                      <div class="hidden lg:block">
-
-
-                      
-
-                      
-                          
-                        </div>
-
-          
-                  </div>
-              </div>
+      <div class="mx-auto flex h-20 max-w-screen-xl items-center gap-8 px-4 sm:px-6 lg:px-8">
+          <a class="flex items-center text-white text-lg font-semibold" href="../index.html">
+              <img class="h-16 mr-5" src="PNG/log.png" alt="Logo">
+              PLAY+
+          </a>
+          <!-- Contenedor para enlaces de navegación -->
+          <div id="navLinks" class="hidden lg:flex flex-grow justify-end items-center">
+              <a class="ml-4 text-gray-300 hover:text-white" href="../index.html">Inicio</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="nosotros.html">Nosotros</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="plataformas.html">Juegos</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="genero.html">Género</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="mercancia.html">Mercancía</a>
+              <a class="inline-block ml-4 rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500" href="login.html">Iniciar sesión</a>
           </div>
-
-      
-      </header>
+          <!-- Mobile menu button (visible only on small screens) -->
+          <div id="mobileMenuButtonWrapper" class="absolute inset-y-0 right-0 flex items-center pr-2 sm:hidden">
+              <button id="mobile-menu-button" type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
+                  <span class="absolute -inset-0.5"></span>
+                  <span class="sr-only">Abrir menú principal</span>
+                  <svg class="block h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+                  </svg>
+                  <svg class="hidden h-6 w-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+              </button>
+          </div>
+      </div>
+      <!-- Mobile menu (hidden by default) -->
+      <div class="sm:hidden" id="mobile-menu">
+          <div class="space-y-1 px-2 pb-3 pt-2">
+              <a class="ml-4 text-gray-300 hover:text-white" href="../index.html">Inicio</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="nosotros.html">Nosotros</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="plataformas.html">Juegos</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="genero.html">Género</a>
+              <a class="ml-4 text-gray-300 hover:text-white" href="mercancia.html">Mercancía</a>
+              <a class="inline-block ml-4 rounded border border-indigo-600 bg-indigo-600 px-12 py-3 text-sm font-medium text-white hover:bg-transparent hover:text-indigo-600 focus:outline-none focus:ring active:text-indigo-500" href="login.html">Iniciar sesión</a>
+          </div>
+      </div>
   </nav>
+  
+  
+  
+  
+      <script>
+          const mobileMenuButton = document.getElementById('mobile-menu-button');
+          const mobileMenu = document.getElementById('mobile-menu');
+          const navLinks = document.getElementById('navLinks');
+          const mobileMenuButtonWrapper = document.getElementById('mobileMenuButtonWrapper');
+  
+          // Función para cambiar las clases CSS basadas en el tamaño de la pantalla
+          function toggleNavLayout() {
+              if (window.innerWidth < 640) {
+                  // Pantallas pequeñas: Mostrar el menú hamburguesa y ocultar los botones de navegación
+                  navLinks.classList.add('hidden');
+                  mobileMenuButtonWrapper.classList.remove('hidden');
+              } else {
+                  // Pantallas grandes: Mostrar los botones de navegación y ocultar el menú hamburguesa
+                  navLinks.classList.remove('hidden');
+                  mobileMenuButtonWrapper.classList.add('hidden');
+                  // Asegurarse de que el menú móvil esté oculto en pantallas grandes
+                  mobileMenu.classList.add('hidden');
+              }
+          }
+  
+          // Llamar a la función al cargar la página y cuando la ventana cambie de tamaño
+          toggleNavLayout();
+          window.addEventListener('resize', toggleNavLayout);
+  
+          // Funcionalidad para mostrar/ocultar el menú móvil cuando se hace clic en el botón
+          mobileMenuButton.addEventListener('click', () => {
+              mobileMenu.classList.toggle('hidden');
+          });
+      </script>
 
     <div class="relative z-5">
       <nav
